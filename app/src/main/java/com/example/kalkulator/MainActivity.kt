@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+//coscos
     fun ac_operation(view:View) {
         clearView()
 

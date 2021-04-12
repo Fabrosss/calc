@@ -13,9 +13,11 @@ class MainActivity : AppCompatActivity() {
     private var comecontrol: Int = 1
     private var numbera : Float  = 0F
     private var numberb : Float = 0F
+    private var result: Float = 0F
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
     }
 
@@ -31,6 +33,26 @@ class MainActivity : AppCompatActivity() {
         resultxt.text = "0"
     }
 
+    fun number_button(view: View){
+        if(result == 1F) {
+            clearView()
+            result = 0F
+        }
+        var txt : String = "0"
+       when(view.id){
+           R.id.button1 -> txt = "1"
+           R.id.button2 -> txt = "2"
+           R.id.button3 -> txt = "3"
+           R.id.button4 -> txt = "4"
+           R.id.button5 -> txt = "5"
+           R.id.button6 -> txt = "6"
+           R.id.button7 -> txt = "7"
+           R.id.button8 -> txt = "8"
+           R.id.button9 -> txt = "9"
+           R.id.button0 -> txt = "0"
+        }
+        updatetext(txt)
+    }
     private fun updatetext(txt: String) {
         val resultxt = findViewById<TextView>(R.id.result)
         if(resultxt.text == "0"){
@@ -39,47 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun one_ope(view:View) {
-        val txt : String = "1"
-        updatetext(txt)
-    }
 
-    fun two_ope(view:View) {
-        val txt : String = "2"
-        updatetext(txt)
-    }
-    fun three_ope(view:View) {
-        val txt : String = "3"
-        updatetext(txt)
-    }
-    fun four_ope(view:View) {
-        val txt : String = "4"
-        updatetext(txt)
-    }
-    fun five_ope(view:View) {
-        val txt : String = "5"
-        updatetext(txt)
-    }
-    fun six_ope(view:View) {
-        val txt : String = "6"
-        updatetext(txt)
-    }
-    fun seven_ope(view:View) {
-        val txt : String = "7"
-        updatetext(txt)
-    }
-    fun eight_ope(view:View) {
-        val txt : String = "8"
-        updatetext(txt)
-    }
-    fun nine_ope(view:View) {
-        val txt : String = "9"
-        updatetext(txt)
-    }
-    fun zero_ope(view:View) {
-        val txt : String = "0"
-        updatetext(txt)
-    }
     private fun sendNumbera() {
         val txt = findViewById<TextView>(R.id.result)
         numbera = txt.text.toString().toFloat()
@@ -91,7 +73,11 @@ class MainActivity : AppCompatActivity() {
     }
     fun cancel_ope(view: View) {
         var txt  = findViewById<TextView>(R.id.result)
-        val txte : String = txt.text.substring(0, txt.text.length-1)
+        val txte : String
+        if (txt.length() != 0 ){
+             txte  = txt.text.substring(0, txt.text.length-1)
+        }else  txte = txt.text.toString()
+
         txt.text = txte
 
 
@@ -103,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             sendNumbera()
             clearView()
         }
+        comecontrol = 1
     }
 
     fun multi_ope(view: View) {
@@ -111,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             sendNumbera()
             clearView()
         }
+        comecontrol = 1
 
     }
     fun coma_ope(view: View) {
@@ -127,6 +115,7 @@ class MainActivity : AppCompatActivity() {
             sendNumbera()
             clearView()
         }
+        comecontrol = 1
     }
     fun plus_ope(view: View) {
         if (currentOperation != "+"){
@@ -134,6 +123,7 @@ class MainActivity : AppCompatActivity() {
             sendNumbera()
             clearView()
         }
+        comecontrol = 1
     }
     fun equal_ope(view: View) {
         if(currentOperation != " "){
@@ -160,7 +150,7 @@ class MainActivity : AppCompatActivity() {
                 comecontrol =1
             }
         }
-
+        result = 1F
     }
 
 

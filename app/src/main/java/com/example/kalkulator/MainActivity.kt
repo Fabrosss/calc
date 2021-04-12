@@ -73,10 +73,13 @@ class MainActivity : AppCompatActivity() {
     }
     fun cancel_ope(view: View) {
         var txt  = findViewById<TextView>(R.id.result)
-        val txte : String
+        var txte : String
         if (txt.length() != 0 ){
-             txte  = txt.text.substring(0, txt.text.length-1)
-        }else  txte = txt.text.toString()
+            txte  = txt.text.substring(0, txt.text.length-1)
+            if(txte.isEmpty()){
+                txte = "0"
+            }
+        }else  txte = "0"
 
         txt.text = txte
 

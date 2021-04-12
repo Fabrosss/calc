@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     fun ac_operation(view:View) {
         clearView()
-
+        clearHistory()
         numbera = 0F
         numberb = 0F
     }
@@ -32,10 +32,14 @@ class MainActivity : AppCompatActivity() {
         val resultxt = findViewById<TextView>(R.id.result)
         resultxt.text = "0"
     }
-
+    private fun clearHistory() {
+        val resultxt = findViewById<TextView>(R.id.History)
+        resultxt.text = ""
+    }
     fun number_button(view: View){
         if(result == 1F) {
             clearView()
+            clearHistory()
             result = 0F
         }
         var txt : String = "0"
@@ -85,11 +89,15 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+    private fun numberHistory(wynik: String, sign: String = ""){
+        val txt = findViewById<TextView>(R.id.History)
+        txt.text = wynik.plus(sign)
+    }
     fun div_ope(view: View) {
         if (currentOperation != "/"){
             currentOperation = "/"
             sendNumbera()
+            numberHistory(numbera.toString(),currentOperation)
             clearView()
         }
         comecontrol = 1
@@ -99,6 +107,7 @@ class MainActivity : AppCompatActivity() {
         if (currentOperation != "*"){
             currentOperation = "*"
             sendNumbera()
+            numberHistory(numbera.toString(),currentOperation)
             clearView()
         }
         comecontrol = 1
@@ -116,6 +125,7 @@ class MainActivity : AppCompatActivity() {
         if (currentOperation != "-"){
             currentOperation = "-"
             sendNumbera()
+            numberHistory(numbera.toString(),currentOperation)
             clearView()
         }
         comecontrol = 1
@@ -124,6 +134,7 @@ class MainActivity : AppCompatActivity() {
         if (currentOperation != "+"){
             currentOperation = "+"
             sendNumbera()
+            numberHistory(numbera.toString(),currentOperation)
             clearView()
         }
         comecontrol = 1
@@ -131,6 +142,8 @@ class MainActivity : AppCompatActivity() {
     fun equal_ope(view: View) {
         if(currentOperation != " "){
             sendNumberb()
+            val history = findViewById<TextView>(R.id.History)
+            numberHistory(history.text.toString().plus(numberb.toString()), "=")
             val txt = findViewById<TextView>(R.id.result)
             val result: String = when(currentOperation){
                 "+" ->{

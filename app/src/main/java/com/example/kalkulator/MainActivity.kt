@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
            R.id.button7 -> txt = "7"
            R.id.button8 -> txt = "8"
            R.id.button9 -> txt = "9"
-           R.id.button0 -> txt = "10"
+           R.id.button0 -> txt = "0"
         }
         updatetext(txt)
     }
